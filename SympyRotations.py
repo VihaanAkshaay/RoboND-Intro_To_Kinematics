@@ -21,4 +21,9 @@ R_z = Matrix([[cos(q3),-sin(q3),0],
               [sin(q3),cos(q3), 0],
               [ 0,0,1]])
 
-
+print("Rotation about the X-axis by 45-degrees")
+print(R_x.evalf(subs={q1: 45*dtr}))
+print("Rotation about the y-axis by 45-degrees")
+print(R_y.evalf(subs={q2: 45*dtr}))
+print("Rotation about the Z-axis by 30-degrees")
+print(R_z.evalf(subs={q3: 30*dtr}))
