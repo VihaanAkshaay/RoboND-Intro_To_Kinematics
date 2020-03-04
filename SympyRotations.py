@@ -3,7 +3,7 @@ from sympy.matrices import Matrix
 import numpy as np
 
 #symols for joint variables that are commonly represented as q
-q1,q2,q3,q4 = symbols(q1:5)  #slicing does not include the last element
+q1,q2,q3,q4 = symbols('q1:5')  #slicing does not include the last element
 A,R,O,C = symbols('A R O C') #unrelated symbols are defined this way
 
 #conversion factors
