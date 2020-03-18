@@ -13,7 +13,7 @@ alpha0, alpha1, alpha2, alpha3, alpha4, alpha5 = symbols('alpha0:6')
 
 # DH Parameters
 s = {alpha0:0,  a0:0, d1:0, q1:0,
-     alpha1:0,  a1:0, d2:0, q2:0,
+     alpha1:0,  a1:1, d2:1, q2:0,
      alpha2:0,  a2:0, d3:0, q3:0,
      alpha3:0,  a3:0, d4:0, q4:0,
      alpha4:0,  a4:0, d5:0, q5:0,
@@ -44,3 +44,37 @@ T5_6 = Matrix([[             cos(q6),            -sin(q6),            0,        
                [ sin(q6)*cos(alpha5), cos(q6)*cos(alpha5), -sin(alpha5), -sin(alpha5)*d6],
                [ sin(q6)*sin(alpha5), cos(q6)*sin(alpha5),  cos(alpha5),  cos(alpha5)*d6],
                [                   0,                   0,            0,               1]])
+
+''' To calculate a particular Transformation matrix,please substitute 
+the DH parameters above and substitute the values.For example uncomment the line below'''
+### Substituted_T0_1 = T0_1.subs(s)
+
+'''For calculating the manipulator transformation matrix uncomment the codes below
+ NOTE:This takes quite sometime for calculating without substituting first'''
+
+### T0_6 = simplify(T0_1 * T1_2 * T2_3 * T3_4 * T4_5 * T5_6)
+### print(T0_6)
+
+'''For space coordinates and orientation of the tool tip uncomment the code below'''
+### Space_coordinates_tooltip = T0_6[0:3][3]
+### Orientation_tooltip = T0_6[0:3][0:3]
+
+'''Using Puma Manipulator data from the tutorial quesion'''
+s1 = {alpha0:0,  a0:0, d1:0,
+      alpha1:-90,  a1:0,
+      alpha2:0, d3:0,
+      alpha3:+90,
+      alpha4:-90,  a4:0, d5:0,
+      alpha5:+90,  a5:0, d6:0}
+
+
+
+T1_2 = T1_2.subs(s1)
+T2_3 = T2_3.subs(s1)
+T3_4 = T3_4.subs(s1)
+T4_5 = T4_5.subs(s1)
+T5_6 = T5_6.subs(s1)
+
+
+T0_6 = simplify(T0_1 * T1_2 * T2_3 * T3_4 * T4_5 * T5_6)
+print(T0_6)
